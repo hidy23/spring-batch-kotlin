@@ -1,0 +1,19 @@
+# info
+info.app:
+  name: image-migration-batch
+  description: image-migration-batch
+  version: 0.0.1-SNAPSHOT
+
+# application
+spring:
+  application:
+    name: image-migration-batch
+  main:
+    allow-bean-definition-overriding: true
+
+# traceID and spanId are predefined MDC keys - we want the logs to include them
+logging:
+  pattern:
+    #    file: "[%X{trace_id},%X{span_id},%X{trace_flags}] [%thread] - %logger{36} - %msg %n"
+    level: "%5p [${spring.application.name:},%mdc{trace_id:-},%mdc{span_id:-}]"
+

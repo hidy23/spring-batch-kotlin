@@ -1,0 +1,35 @@
+server:
+  port: 9090
+
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/batch?useSSL=false&characterEncoding=utf8&serverTimezone=UTC
+    username: batchuser
+    password: batchpassword
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-timeout: 5000
+      maximum-pool-size: 10
+
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+    show_sql: true
+
+    logging.level:
+      org.hibernate.SQL: debug
+
+  batch:
+    job:
+      name: image-migration-batch
+
+
+
